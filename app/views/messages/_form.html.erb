@@ -1,0 +1,12 @@
+<h1>#form</h1>
+
+
+<%= simple_form_for @message do |f| %>
+  <%= f.input :title, label: 'Insert title please', error: 'title is mandatory, please specify one', placeholder: 'Title' %> 
+  <%= f.input :date %>
+  <%= f.input :localization %>
+  <%= f.input :notes %>
+  <%= f.button :submit %>
+<% end %>
+
+

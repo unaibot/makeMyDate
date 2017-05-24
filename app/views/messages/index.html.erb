@@ -1,0 +1,12 @@
+<h1>#Index</h1>
+
+
+<% @messages.each do |message| %>
+	<h3> <%= message.title %> </h3>
+	<h4> <%= message.localization %> </h4>
+	<h4> <%= message.date %> </h4>
+
+	<%= link_to "View message", message_path(message), class: "btn btn-default" %>
+<% end %>
+
+<%= link_to 'New message', new_message_path %>

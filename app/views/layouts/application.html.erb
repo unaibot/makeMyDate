@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -20,16 +21,21 @@
 							<li> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </li>
 							<% else %>
 								<li> <%= link_to "Log In", new_user_session_path %> </li>
-					<% end %>	
+					  <% end %>	
 				</ul>
 				<% if user_signed_in? %>
 					<p> <%= link_to "New Message", new_message_path, class: "navbar-right navbar-text navbar-link" %> </p>
+				<% end %>	
 			</div>
 		</div>
-  	<p class="notice"> <%= notice %></p>
-  	<p class="alert"> <%= alert %></p>
+
+  	<p class="notice"> <%= notice %> </p>
+  	<p class="alert"> <%= alert %> </p>
 
    	 <%= yield %>
+   	 
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO1FQqA2KQ0PjTJXXAiAlQiq1Ah40-YpI&callback=initMap"
+  type="text/javascript"></script>
 
   </body>
 </html>

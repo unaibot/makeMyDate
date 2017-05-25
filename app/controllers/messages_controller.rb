@@ -6,8 +6,7 @@ before_action :find_message, only: [:show, :edit, :update, :destroy]
 		@messages = current_user.messages.all.order("created_at DESC")
 	end
 
-	def show
-		
+	def show		
 	end
 		
 	def new

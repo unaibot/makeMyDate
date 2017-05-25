@@ -4,10 +4,35 @@
 
 <h3> <%= @message.date %> </h3>
 
-<h2> <%= @message.localization %> </h2>
+<h2> <%= result = @message.localization %> </h2>
 
 <p> <%= @message.notes %> </p>
+
+<body onload="initialize()">
+
+  <div class="map"></div>
+  
+</body>
+<script>
+
+  function initMap() {
+    var coord = <%= result.to_s %>;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: coord
+    });
+    var marker = new google.maps.Marker({
+      position: coord,
+      map: map
+    });
+  }
+</script>
+
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO1FQqA2KQ0PjTJXXAiAlQiq1Ah40-YpI&callback=initMap"
+  ></script>
 
 <%= link_to 'Back', root_path %>
 <%= link_to 'Edit', edit_message_path(@message) %>
 <%= link_to 'Delete', message_path(@message), method: :delete, data: { confirm: "Are you sure?"} %>
+
+

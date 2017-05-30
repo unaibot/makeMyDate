@@ -6,8 +6,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  </head>
+    <%= javascript_include_tag  "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"   %>
+	</head>
 
   <body>
 		<div class="navbar navbar-default">
@@ -33,8 +33,7 @@
   	<p class="alert"> <%= alert %> </p>
 
    	 <%= yield %>
-
+		<script src=""></script>
 		
-
   </body>
 </html>

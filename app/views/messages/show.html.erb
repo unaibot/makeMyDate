@@ -1,35 +1,52 @@
 
 
 <h2> <%= @message.title %> </h2>
-
 <h3> <%= @message.date %> </h3>
+<h2> <%= result = @message.localization  %> </h2>
+<p> <%= marker_title = @message.notes %> </p>
 
-<h2> <%= result = @message.localization %> </h2>
-
-<p> <%= @message.notes %> </p>
-
-<body onload="initialize()">
-
-  <div class="map"></div>
-  
+<body onload="initMap()">
+  <div id="map"></div>  
 </body>
+
+
 <script>
+function initMap() {
 
-  function initMap() {
-    var coord = <%= result.to_s %>;
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: coord
-    });
+  var map;
+  var latitude;
+  var longitude;
+  var address = "<%= result %>";
+  var marker_title = "<%= marker_title %>";
+
+  //Convert request to latitude and longitude values
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({address: address}, function(results, status) {
+    
+    if (status == google.maps.GeocoderStatus.OK) {
+    var latitude = results[0].geometry.location.lat();
+    var longitude = results[0].geometry.location.lng();
+    var myLatlng = new google.maps.LatLng(latitude, longitude);
+
+    //Create map
+    var mapOptions = {
+          zoom: 16,
+          center: myLatlng,
+          mapTypeId: 'roadmap'
+    };
+
+    //show map
+    var map = new google.maps.Map(document.getElementById('map'),
+    mapOptions);
     var marker = new google.maps.Marker({
-      position: coord,
-      map: map
-    });
-  }
+          position: myLatlng,
+          map: map,
+          title: marker_title
+     });
+  } 
+}); 
+}
 </script>
-
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO1FQqA2KQ0PjTJXXAiAlQiq1Ah40-YpI&callback=initMap"
-  ></script>
 
 <%= link_to 'Back', root_path %>
 <%= link_to 'Edit', edit_message_path(@message) %>

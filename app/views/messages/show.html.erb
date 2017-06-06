@@ -1,17 +1,56 @@
 
 
-<h2> <%= @message.title %> </h2>
-<h3> <%= @message.date %> </h3>
-<h2> <%= result = @message.localization  %> </h2>
-<p> <%= marker_title = @message.notes %> </p>
-
 <body onload="initMap()">
-  <div id="map"></div>  
-</body>
+
+  <div class="col-md-8 col-md-offset-2" >
+    <div class="message-show">
+
+      <h2> <%= @message.title %> </h2>
+      <h3> <%= @message.date.to_formatted_s(:short)%> </h3>
+      <h4 id="demo"></h4>
+      <h3> <%= result = @message.localization  %> </h3>
+      <p class="message-desc"> <%= marker_title = @message.notes %> </p>
+      
+      <div id="map" ></div> 
+
+      <div class="links btn-group">
+        <%= link_to 'Back', root_path, class: "btn btn-default"  %>
+        <%= link_to 'Edit', edit_message_path(@message), class: "btn btn-default" %>
+        <%= link_to 'Delete', message_path(@message), method: :delete, data: { confirm: "Delete the message?"}, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+
+</body> 
 
 
-<script>
-function initMap() {
+<script type="text/javascript">
+  // Set the date we're counting down to
+  var end_of_date = "<%= @message.date.to_f * 1000 %>";
+  var countDownDate = new Date(parseInt(end_of_date)).getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "Date Expired";
+    }
+}, 1000);
+</script>
+
+
+
+<script type="text/javascript">  
+  function initMap() {
 
   var map;
   var latitude;
@@ -24,15 +63,15 @@ function initMap() {
   geocoder.geocode({address: address}, function(results, status) {
     
     if (status == google.maps.GeocoderStatus.OK) {
-    var latitude = results[0].geometry.location.lat();
-    var longitude = results[0].geometry.location.lng();
-    var myLatlng = new google.maps.LatLng(latitude, longitude);
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+        var myLatlng = new google.maps.LatLng(latitude, longitude);
 
     //Create map
-    var mapOptions = {
-          zoom: 16,
-          center: myLatlng,
-          mapTypeId: 'roadmap'
+        var mapOptions = {
+            zoom: 16,
+            center: myLatlng,
+            mapTypeId: 'roadmap'
     };
 
     //show map
@@ -42,14 +81,9 @@ function initMap() {
           position: myLatlng,
           map: map,
           title: marker_title
-     });
+    });
   } 
 }); 
 }
+
 </script>
-
-<%= link_to 'Back', root_path %>
-<%= link_to 'Edit', edit_message_path(@message) %>
-<%= link_to 'Delete', message_path(@message), method: :delete, data: { confirm: "Are you sure?"} %>
-
-

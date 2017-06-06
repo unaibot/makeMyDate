@@ -1,12 +1,24 @@
-<h1>#Index</h1>
 
 
 <% @messages.each do |message| %>
-	<h3> <%= message.title %> </h3>
-	<h4> <%= message.localization %> </h4>
-	<h4> <%= message.date %> </h4>
-
-	<%= link_to "View message", message_path(message), class: "btn btn-default" %>
+	
+	<div class="col-md-4">
+		<div class="message">
+			<div class="col-md-6" id="message-left">
+			  <%= link_to message_path(message), class: "btn-custom-sm" do %>
+			   	<i class="glyphicon glyphicon-menu-hamburger"></i>
+			  <% end %>
+				<h2 class="message-title"> <%= message.title %> </h2>
+				<h4 class="message-localization"> <%= message.localization %> </h4>
+			</div>
+			<div class="col-md-6" id="message-right">
+				<h4 class="message-date"> <%= message.date.to_formatted_s(:short) %> </h4>
+			</div>				
+		</div>
+	</div>
 <% end %>
 
-<%= link_to 'New message', new_message_path %>
+
+<div id="circle1" class="circle">	
+	<%= link_to "New", new_message_path, class: "footer" %>
+</div>

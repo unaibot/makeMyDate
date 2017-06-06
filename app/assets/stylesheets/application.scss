@@ -15,3 +15,199 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto' rel="stylesheet");
+
+body,html {
+	background: rgb(215,228,240); /* Old browsers */
+	background: -moz-linear-gradient(-45deg, rgba(215,228,240,1) 0%, rgba(177,191,214,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, rgba(215,228,240,1) 0%,rgba(177,191,214,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, rgba(215,228,240,1) 0%,rgba(177,191,214,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	font-family: 'Roboto', sans-serif;
+	height: 100%;
+	width: 100%;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;	
+}
+
+
+
+.btn-custom {
+	background-color: #fff;
+	color: #0a8fd5;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	border-radius: 8px;
+	padding: 10px 20px;
+	&:hover {
+		color: #383838;
+		transition: 0.5s;
+		background-color: #fff;
+		text-decoration: none;
+	}
+}
+
+
+.btn:hover {
+	transition: 0.5s;
+	color: #383838;
+	background-color: #fff;
+}
+
+
+/* Navbar styles */
+
+
+.navbar-default {
+
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: transparent;
+
+	.navbar-nav > li > a {
+		color: white;
+	}
+
+	.navbar-link {
+		color: white;
+	}
+
+	.navbar-brand {
+		color: white;
+		letter-spacing: 1.1px;
+	}
+}
+
+/* Links styles */
+
+.links {
+	margin-top: 20px;
+	.btn-default {
+		color: #0a8fd5;
+	}
+}
+
+
+/* Message styles */
+
+.message {
+	box-sizing: border-box;
+	background-color: #7694ce;
+	border-radius: 2px;
+	box-shadow: 4px 10px 25px #819bbe;
+	height: 150px;	
+	margin-bottom: 25px;
+	margin-right: 5px;
+	margin-left: 5px;	
+	width: 280px;
+}
+.message-title   {
+	font-size: 2em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin-top: 10px;
+	color: white;
+	margin-bottom: 10px;
+}
+
+#message-left   {
+	border-bottom: 4px solid #0a8fd5;
+	height: 100%;	
+	width: 60%;
+	z-index: 1;
+}
+
+#message-right   {
+	background: rgba(0,0,0,0.4);
+	float: right;
+	height: 100%;
+	width: 40%;
+	z-index: 1;
+}
+
+.message-localization   {
+	font-size: 0.8em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin-top: 25px;
+	color: white;	
+}
+
+
+#message-right h4   {
+	color: white;
+	font-size: 1.0em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin-top: 50%;
+	margin-bottom: 50%;
+}
+
+
+
+.glyphicon {
+	margin-top: 8px;
+}
+
+
+.btn-custom {
+		margin-top: 20px;
+	
+
+}
+
+.message:nth-child(4n) {
+	clear: left;
+}
+
+/* Message show-page styles */
+
+.message-show {
+	box-sizing: border-box;
+	background-color: #383838;
+	box-shadow: 4px 10px 15px #819bbe;
+	border-bottom: 4px solid #0a8fd5;
+	color: #fff;	
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin: 0 auto;
+	padding: 2.0em 1.5em;
+	width: 450px;
+
+
+	h2 {
+		margin-top: 0;
+	}
+
+	.message-desc {
+		font-size: 1.1em;
+		line-height: 1.75;
+		margin-bottom: 50px;
+	}
+
+		
+}
+
+.container-form {
+
+	background-color: #46529d;
+	height: 550px;
+	margin: auto;
+	padding: 15px;
+	width: 460px;
+}
+
+.circle {
+	background: #fff200;
+	border-radius: 50%;
+	bottom: 0;
+	height: 50px;
+	left: 50%;
+	position: absolute;
+	text-align: center;	
+	width: 50px;
+}
+
